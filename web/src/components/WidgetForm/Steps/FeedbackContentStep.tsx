@@ -5,11 +5,12 @@ import { CloseButton } from "../../CloseButton"
 import { ScreenshotButton } from "../ScreenshotButton";
 
 interface FeedbackContentStepProps {
+    onFeedbackSent: () => void;
     feedbackType: FeedbackType ;
     onFeedbackRestartRequested: () => void;
 }
 export function FeedbackContentStep({feedbackType, 
-    onFeedbackRestartRequested} : FeedbackContentStepProps){
+    onFeedbackRestartRequested, onFeedbackSent} : FeedbackContentStepProps){
     
     const [screenshot,  setScreenshot] = useState<string | null>(null)
     const feedbackTypeInfo = feedbackTypes[feedbackType];
@@ -24,6 +25,7 @@ export function FeedbackContentStep({feedbackType,
                 comment
             }
         )
+        onFeedbackSent();
     }
 
     return(
